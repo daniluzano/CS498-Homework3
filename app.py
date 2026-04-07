@@ -39,7 +39,7 @@ def insert_safe():
     if data is None:
         return jsonify({"error": "No JSON payload provided"}), 400
 
-    safe_collection = collection.with_options(write_concern=WriteConcern("majority"))
+    safe_collection = collection.with_options(write_concern=WriteConcern(w="majority"))
     result = safe_collection.insert_one(data)
 
     return jsonify({"inserted_id": str(result.inserted_id)})
